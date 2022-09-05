@@ -24,6 +24,7 @@ createConnection().then(value => {
     conn = value
 });
 
+
 async function pickGroup(group) {
     try {
         await conn.listgroup(group);
