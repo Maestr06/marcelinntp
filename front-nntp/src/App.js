@@ -1,23 +1,33 @@
 import logo from './logo.svg';
 import './App.css';
+import React, {useEffect, useState} from "react"
 
-function Marceli(props) {
-  let data1 = {};
-  fetch('../groups')
-  .then((response) => response.json())
-  .then((data) => {
-    data1 = Object.values(data);
-    console.log(typeof data1)
-  });
+function Groups() {
+  const [groups, setGroups] = useState("");
+
+  useEffect(() => {
+    const url = "../groups";
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        console.log(json.array);
+        const grupa = json.array.map((data) => {return <li key={data}>{data}</li>})
+        setGroups(grupa);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  },[]);
+
+  
   return (
-    <ul>
-      {data1.map(data2 => {
-        return (
-          <li key={data2}>{data2}</li>
-        )
-      })}
-    </ul>
-  );
+    <ul>{groups}</ul>
+  )
+
 }
 
 function App() {
@@ -28,7 +38,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <Marceli name={{title:"Koza to super kolega, ale nie zna się na żartach"}}></Marceli>
+        <Groups></Groups>
         <a
           className="App-link"
           href="https://reactjs.org"
