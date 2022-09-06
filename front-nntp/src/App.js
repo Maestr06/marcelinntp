@@ -2,7 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 
 function Marceli(props) {
-  return <h1>{props.name.title}</h1>;
+  let data1 = {};
+  fetch('../groups')
+  .then((response) => response.json())
+  .then((data) => {
+    data1 = Object.values(data);
+    console.log(typeof data1)
+  });
+  return (
+    <ul>
+      {data1.map(data2 => {
+        return (
+          <li key={data2}>{data2}</li>
+        )
+      })}
+    </ul>
+  );
 }
 
 function App() {

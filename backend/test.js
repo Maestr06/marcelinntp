@@ -41,7 +41,7 @@ async function getGroups() {
     const groups = await conn.newsgroups(date)
     const formatedGroups = enc.decode(groups.data, 'iso-8859-2');
     const result = formatedGroups.replace(regex, ' ').split(' ').filter(item => item.startsWith('pl.'));
-    return result
+    return {"array": result}
 }
 
 async function getArticlesFromGroup(group) {
@@ -149,7 +149,7 @@ app.get('/article/:id', async (req, res) => {
 })
 app.get('/groups', async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify(await getGroups()));
+    res.send(await getGroups());
 })
 app.get('/articles', async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
