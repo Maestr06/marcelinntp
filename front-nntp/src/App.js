@@ -136,9 +136,9 @@ export default function App() {
         <h1>Grupy pl.*</h1>
         <button className='App-back' onClick={() => {setRoute("");setNumber("")}}>Wróć do wyboru grup</button>
         <button className='App-back' onClick={() => {setNumber("")}}>Wróć do wyboru artykułów</button>
-        {number ? <div>
-                    <button className='App-back' onClick={handleLast}>Poprzedni</button>
-                    <button className='App-back' onClick={handleNext}>Następny</button>
+        {number ? <div className='next'>
+                    <button className='back' onClick={handleLast}>Poprzedni</button>
+                    <button className='back' onClick={handleNext}>Następny</button>
                   </div> 
                 : null}
       </header>
