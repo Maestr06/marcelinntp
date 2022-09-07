@@ -32,6 +32,21 @@
   border-radius: 4px;
 }
 
+.App-back {
+  background-color: #f0f0f0;
+  width: 240px;
+  margin-bottom: 5px;
+  padding: 4px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.article {
+  font-size: 16px;
+  text-align: center;
+  width: 80%;
+}
+
 ul {
   list-style: none;
   padding-left: 0;
