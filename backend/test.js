@@ -135,12 +135,14 @@ app.listen(port, () => console.log(`listening on ${port}`));
 app.get('/article/last', async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     const number = await lastArticle();
-    res.send(await getArticle(number.articleNumber));
+    const response = number.articleNumber.toString()
+    res.send(response);
 })
 app.get('/article/next', async (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     const number = await nextArticle();
-    res.send(await getArticle(number.articleNumber));
+    const response = number.articleNumber.toString()
+    res.send(response);
 })
 
 app.get('/article/:id', async (req, res) => {

@@ -89,8 +89,9 @@ export default function App() {
       const fetchData = async () => {
         try {
           const article = await fetch(url);
-          //console.log( await article.text());
-          setArticle(await article.text());
+          const result = await article.text();
+          console.log(result);
+          setArticle(result);
         } catch (error) {
           console.log("error", error);
         }
@@ -100,7 +101,7 @@ export default function App() {
     },[number]);
   
     return (
-      <div className='article'>{article}</div>
+      <p className='article'>{article}</p>
     )
   }
 
@@ -115,12 +116,31 @@ export default function App() {
     console.log(number);
   }
 
+  async function handleLast() {
+    const response = await fetch("../article/last");
+    const data = await response.json();
+    setNumber(data);
+    console.log(data);
+  }
+
+  async function handleNext() {
+    const response = await fetch("../article/next");
+    const data = await response.json();
+    setNumber(data);
+    console.log(data);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Grupy pl.*</h1>
         <button className='App-back' onClick={() => {setRoute("");setNumber("")}}>Wróć do wyboru grup</button>
         <button className='App-back' onClick={() => {setNumber("")}}>Wróć do wyboru artykułów</button>
+        {number ? <div>
+                    <button className='App-back' onClick={handleLast}>Poprzedni</button>
+                    <button className='App-back' onClick={handleNext}>Następny</button>
+                  </div> 
+                : null}
       </header>
       <main className="App-main">
         {!route && !number ? (<Groups></Groups>) : null}

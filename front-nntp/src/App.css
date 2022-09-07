@@ -34,7 +34,7 @@
 
 .App-back {
   background-color: #f0f0f0;
-  width: 240px;
+  width: 480px;
   margin-bottom: 5px;
   padding: 4px;
   border: 1px solid black;
@@ -42,8 +42,13 @@
 }
 
 .article {
-  font-size: 16px;
-  text-align: center;
+  word-break: break-all;
+  align-self: center;
+  font-size: 1rem;
+  white-space: pre;
+  text-overflow: ellipsis;
+  text-align: justify;
+  word-wrap: break-word;
   width: 80%;
 }
 
